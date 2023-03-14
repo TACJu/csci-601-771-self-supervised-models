@@ -182,7 +182,7 @@ def train(mymodel, num_epochs, train_dataloader, validation_dataloader, device, 
 
         # normally, validation would be more useful when training for many epochs
         val_accuracy = evaluate_model(mymodel, validation_dataloader, device)
-        current_val_accuracy = val_accuracy.compute()['accuracy']
+        current_val_accuracy = val_accuracy['accuracy']
         print(f" - Average validation metrics: accuracy={current_val_accuracy}")
         val_accuracy_history.append(current_val_accuracy)
 
@@ -191,7 +191,7 @@ def train(mymodel, num_epochs, train_dataloader, validation_dataloader, device, 
     plt.title('Model Training & Validation Accuracy')
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
-    plt.sivefig('./accuracy.png')
+    plt.savefig('./accuracy_lr{}_ep{}.png'.format(lr, num_epochs))
 
 
 def pre_process(model_name, batch_size, device, small_subset=False):
